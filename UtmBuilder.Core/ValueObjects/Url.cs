@@ -1,4 +1,4 @@
-using UtmBuilder.Core.Exceptions;
+using UtmBuilder.Core.ValueObjects.Exceptions;
 
 namespace UtmBuilder.Core.ValueObjects;
 
