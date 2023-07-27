@@ -1,3 +1,4 @@
+using UtmBuilder.Core.Extensions;
 using UtmBuilder.Core.ValueObjects;
 
 namespace UtmBuilder.Core;
@@ -19,4 +20,12 @@ public class Utm
     /// Campaign Details
     /// </summary>
     public Campaign Campaign { get; }
+
+    public override string ToString()
+    {
+        var segments = new List<string>();
+        segments.AddIfNotNull(segments);
+
+        return $"{Url.Address}?{string.Join("&", segments)}";
+    }
 }
