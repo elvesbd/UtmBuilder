@@ -1,3 +1,5 @@
+using UtmBuilder.Core.Exceptions;
+
 namespace UtmBuilder.Core.ValueObjects;
 
 public class Url : ValueObjects
@@ -9,6 +11,7 @@ public class Url : ValueObjects
     public Url(string address)
     {
         Address = address;
+        InvalidUrlException.ThrowIfInvalid(address);
     }
 
     /// <summary>
