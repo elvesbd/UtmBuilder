@@ -38,7 +38,7 @@ public class Utm
         var pars = segments[1].Split("&");
         var source = pars.Where(x => x.StartsWith("utm_source")).FirstOrDefault("").Split("=")[1];
         var medium = pars.Where(x => x.StartsWith("utm_medium")).FirstOrDefault("").Split("=")[1];
-        var name = pars.Where(x => x.StartsWith("utm_campaign")).FirstOrDefault("").Split("=")[1];
+        var name = pars.Where(x => x.StartsWith("utm_name")).FirstOrDefault("").Split("=")[1];
         var id = pars.Where(x => x.StartsWith("utm_id")).FirstOrDefault("").Split("=")[1];
         var term = pars.Where(x => x.StartsWith("utm_term")).FirstOrDefault("").Split("=")[1];
         var content = pars.Where(x => x.StartsWith("utm_content")).FirstOrDefault("").Split("=")[1];
@@ -56,7 +56,7 @@ public class Utm
         var segments = new List<string>();
         segments.AddIfNotNull("utm_source", Campaign.Source);
         segments.AddIfNotNull("utm_medium", Campaign.Medium);
-        segments.AddIfNotNull("utm_campaign", Campaign.Name);
+        segments.AddIfNotNull("utm_name", Campaign.Name);
         segments.AddIfNotNull("utm_id", Campaign.Id);
         segments.AddIfNotNull("utm_term", Campaign.Term!);
         segments.AddIfNotNull("utm_content", Campaign.Content!);
