@@ -5,22 +5,36 @@ namespace UtmBuilder.Core.Tests;
 [TestClass]
 public class UtmTests
 {
+    private const string Result = "https://balta.io/?utm_source=src&utm_medium=med&utm_name=nme&utm_id=id&utm_term=ter&utm_content=ctn";
+    private readonly Url _url = new("https://balta.io/");
+    private readonly Campaign _campaign = new
+     (
+        "src",
+        "med",
+        "nme",
+        "id",
+        "ter",
+        "ctn"
+    );
+
     [TestMethod]
     public void ShouldReturnUrlFromUtm()
     {
-        var url = new Url("https://balta.io/");
-        var campaign = new Campaign
-        (
-            "src",
-            "med",
-            "nme",
-            "id",
-            "ter",
-            "ctn"
-        );
-        var utm = new Utm(url, campaign);
+        var utm = new Utm(_url, _campaign);
+        Assert.AreEqual(Result, utm.ToString());
+        Assert.AreEqual(Result, (string)utm);
+    }
 
-        var result = "https://balta.io/?utm_source=src&utm_medium=med&utm_name=nme&utm_id=id&utm_term=ter&utm_content=ctn";
-        Assert.AreEqual(result, utm.ToString());
+    [TestMethod]
+    public void ShouldReturnUtmFromUrl()
+    {
+        Utm utm = Result;
+        Assert.AreEqual("https://balta.io/", utm.Url.Address);
+        Assert.AreEqual("src", utm.Campaign.Source);
+        Assert.AreEqual("med", utm.Campaign.Medium);
+        Assert.AreEqual("nme", utm.Campaign.Name);
+        Assert.AreEqual("id", utm.Campaign.Id);
+        Assert.AreEqual("ter", utm.Campaign.Term);
+        Assert.AreEqual("ctn", utm.Campaign.Content);
     }
 }
